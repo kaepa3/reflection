@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+func main() {
+	f5_1()
+	fmt.Println("------------------")
+}
+
+func f5_1() {
+	{
+		v1 := []int{1, 2, 3, 4, 5}
+		v2 := make([]int, len(v1), cap(v1))
+		v3 := make([]int, 3, 5)
+		v4 := make([]int, 10, 10)
+		count := reflect.Copy(reflect.ValueOf(v2), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v2, count)
+		count = reflect.Copy(reflect.ValueOf(v3), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v3, count)
+		count = reflect.Copy(reflect.ValueOf(v4), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v4, count)
+	}
+	{
+		v1 := []int{1, 2, 3, 4, 5}
+		v2 := [5]int{}
+		v3 := [3]int{}
+		v4 := [10]int{}
+		count := reflect.Copy(reflect.ValueOf(v2), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v2, count)
+		count = reflect.Copy(reflect.ValueOf(v3), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v3, count)
+		count = reflect.Copy(reflect.ValueOf(v4), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v4, count)
+	}
+	{
+
+		v1 := "hello"
+		v2 := make([]uint8, len(v1), cap(v1))
+		v3 := make([]uint8, 3, 5)
+		v4 := make([]uint8, 10, 10)
+		count := reflect.Copy(reflect.ValueOf(v2), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v2, count)
+		count = reflect.Copy(reflect.ValueOf(v3), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v3, count)
+		count = reflect.Copy(reflect.ValueOf(v4), reflect.ValueOf(v1))
+		fmt.Printf("%+v, %+v, %+v\n", v1, v4, count)
+	}
+}
